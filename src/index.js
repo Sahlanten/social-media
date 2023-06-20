@@ -1,8 +1,22 @@
-import state from './redux/state';
-import { rerenderEntireTree } from './Render';
+import state, { subscribe } from './redux/state';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import { addPost, updateNewPostText } from './redux/state';
+
+
+let rerenderEntireTree = (state) => {
+	const root = ReactDOM.createRoot(document.getElementById('root'));
+	root.render(
+		<App state={state} addPost={addPost} updateNewPostText={updateNewPostText} />
+	);
+}
+
+
 
 rerenderEntireTree(state);
-
+subscribe(rerenderEntireTree)
 
 
 // If you want to start measuring performance in your app, pass a function
