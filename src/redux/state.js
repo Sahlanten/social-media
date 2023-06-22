@@ -1,6 +1,6 @@
 
 let store = {
-	_state :{
+	_state: {
 		profilePage: {
 			posts: [
 				{ id: 1, message: 'Hi, how are you?', likesCount: 12 },
@@ -8,7 +8,7 @@ let store = {
 			],
 			newPostText: 'Hi, how are you',
 		},
-	
+
 		dialogsPage: {
 			messagesData: [
 				{ id: 1, message: 'Hi' },
@@ -26,30 +26,34 @@ let store = {
 			],
 		}
 	},
-	getState(){
-		return this._state
-	},
-	_callSubscriber () {
+	_callSubscriber() {
 		console.log('Rerendering')
 	},
-	addPost () {
-		let newPost = {
-			id: 5,
-			message: this._state.profilePage.newPostText,
-			likesCount: 0
-		};
-	
-		this._state.profilePage.posts.push(newPost);
-		this._state.profilePage.newPostText = '';
-		this._callSubscriber(this._state);
+
+	getState() {
+		return this._state
 	},
-	updateNewPostText (newText) {
-		this._state.profilePage.newPostText = newText
-		this._callSubscriber(this._state);
-	},
-	subscribe (observer){
+	subscribe(observer) {
 		this._callSubscriber = observer
-	} 
+	},
+
+	dispatch(action) {
+		if (action.type === 'add-post') {
+			let newPost = {
+				id: 5,
+				message: this._state.profilePage.newPostText,
+				likesCount: 0
+			};
+
+			this._state.profilePage.posts.push(newPost);
+			this._state.profilePage.newPostText = '';
+			this._callSubscriber(this._state);
+		} else if (action.type === 'update-new-post-text') {
+			this._state.profilePage.newPostText = action.newText;
+			this._callSubscriber(this._state);
+		}
+	}
+
 }
 
 
@@ -61,4 +65,4 @@ let store = {
 
 
 export default store;
-window.store = store;
+
