@@ -1,3 +1,5 @@
+const add_post = 'add-post';
+const update_new_post_text = 'update-new-post-text';
 
 let store = {
 	_state: {
@@ -56,7 +58,9 @@ let store = {
 
 }
 
+export const addPostActionCreator = () => ({ type: add_post })
 
+export const updateNewPostActionCreator = (text) => ({ type: update_new_post_text, newText: text })
 
 
 
