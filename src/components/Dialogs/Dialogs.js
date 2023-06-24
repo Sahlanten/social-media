@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Dialogs.module.css';
 import { NavLink } from 'react-router-dom';
-import { sendMessageCreator, updateNewMessageBodyCreator } from '../../redux/state';
+import { sendMessageCreator, updateNewMessageBodyCreator } from '../../redux/dialogs-reducer';
 
 
 const DialogItem = (props) => {
